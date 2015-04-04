@@ -101,6 +101,24 @@ let resizeAndFill (width : int) (height : int) (colour: Color) (pics : Picture l
         g.DrawImage(pic.image, (width - pic.width) / 2, (height - pic.height) / 2)
         p) pics
 
+/// Scale pictures to the supplied width and height
+let scale (width : int) (height : int) (pics : Picture list) =
+    List.map (fun (pic : Picture) ->
+        let p = new Picture(width, height, pic.name)
+        use g = Graphics.FromImage(p.image)
+        g.DrawImage(pic.image, 0, 0, width, height)
+        p) pics
+
+/// Scale pictures to the supplied width and height and fill the background with the supplied colour
+let scaleAndFill (width : int) (height : int) (colour: Color) (pics : Picture list) =
+    List.map (fun (pic : Picture) ->
+        let p = new Picture(width, height, pic.name)
+        use g = Graphics.FromImage(p.image)
+        use b = new SolidBrush(colour)
+        g.FillRectangle(b, 0, 0, pic.width, pic.height)
+        g.DrawImage(pic.image, 0, 0, width, height)
+        p) pics
+
 let private getColoursFromPicture (pic : Picture) =
     pic.beginUpdate
     let colours = 
@@ -263,10 +281,7 @@ let getMaxWidth (pics : Picture list) =
 let getMaxHeight (pics : Picture list) =
     let result = pics |> List.maxBy (fun p -> p.height)
     result.height
-    /// Crop all pictures to the given width and height. Does not scale Picture, just crops it
-let crop width height (pics : Picture list) =
-    List.map (fun (pic : Picture) -> resize width, height, pic) pics
- 
+
 /// Copies a rectangle from the supplied picture creating a new list of pictures
 let copy (r : Rectangle) (pics : Picture list) =
     List.map (fun (pic : Picture) -> pic.cloneRectangle r.Left r.Top r.Width r.Height) pics

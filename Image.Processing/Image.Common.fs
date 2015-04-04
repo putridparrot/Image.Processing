@@ -53,7 +53,11 @@ type Picture =
             if this._bitmap <> null 
             then this._bitmap.Height else 0
     member this.save = 
-        let newFilename = Path.GetDirectoryName this.name + "\\new_" + Path.GetFileName this.name
+        let currentDir = Path.GetDirectoryName this.name
+        let newDir = currentDir + "\\new\\"
+        if not (Directory.Exists(newDir))
+        then Directory.CreateDirectory(newDir) |> ignore
+        let newFilename = newDir + Path.GetFileName this.name
         if File.Exists(newFilename) 
         then File.Delete(newFilename)
         this._bitmap.Save(newFilename)
