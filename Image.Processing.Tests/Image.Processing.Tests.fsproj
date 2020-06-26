@@ -1,113 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>bdf71a65-8fc6-44d0-8326-9a6950b66cdf</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Image.Processing.Tests</RootNamespace>
-    <AssemblyName>Image.Processing.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
-    <Name>Image.Processing.Tests</Name>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <Tailcalls>false</Tailcalls>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\Image.Processing.Tests.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <Tailcalls>true</Tailcalls>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\Image.Processing.Tests.XML</DocumentationFile>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="FsUnit.CustomMatchers">
-      <HintPath>..\packages\FsUnit.xUnit.1.3.0.1\Lib\net40\FsUnit.CustomMatchers.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FsUnit.Xunit">
-      <HintPath>..\packages\FsUnit.xUnit.1.3.0.1\Lib\net40\FsUnit.Xunit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="mscorlib" />
-    <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NHamcrest">
-      <HintPath>..\packages\FsUnit.xUnit.1.3.0.1\Lib\net40\NHamcrest.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="xunit">
-      <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Picture.Tests.fs" />
-    <None Include="packages.config" />
-    <None Include="app.config" />
-    <Compile Include="Hsl.Tests.fs" />
-    <Compile Include="Create.Tests.fs" />
     <Compile Include="Clone.Tests.fs" />
+    <Compile Include="Create.Tests.fs" />
     <Compile Include="Fill.Tests.fs" />
-    <Compile Include="Resize.Tests.fs" />
     <Compile Include="GetColours.Tests.fs" />
-    <Compile Include="MakeTwoTone.Tests.fs" />
-    <Compile Include="MakeBlackAndWhite.Tests.fs" />
-    <Compile Include="GetWidth.Tests.fs" />
     <Compile Include="GetHeight.Tests.fs" />
-    <Compile Include="GetMaxWidth.Tests.fs" />
     <Compile Include="GetMaxHeight.Tests.fs" />
+    <Compile Include="GetMaxWidth.Tests.fs" />
+    <Compile Include="GetWidth.Tests.fs" />
+    <Compile Include="Hsl.Tests.fs" />
+    <Compile Include="MakeBlackAndWhite.Tests.fs" />
+    <Compile Include="MakeTwoTone.Tests.fs" />
+    <Compile Include="Picture.Tests.fs" />
+    <Compile Include="Resize.Tests.fs" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Image.Manipulation\Image.Manipulation.csproj">
-      <Name>Image.Manipulation</Name>
-      <Project>{e31a25e4-45e5-4abd-a361-4378e21f21bb}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Image.Processing\Image.Processing.fsproj">
-      <Name>Image.Processing</Name>
-      <Project>{c3ec373a-362e-4353-a9bd-0a4a0341270b}</Project>
-      <Private>True</Private>
-    </ProjectReference>
+    <None Include="app.config" />
   </ItemGroup>
-  <PropertyGroup>
-    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '11.0'">
-      <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">
-        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets')">
-        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
-  <Import Project="$(FSharpTargetsPath)" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <PackageReference Include="FsUnit.xUnit" Version="3.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Image.Processing\Image.Processing.fsproj" />
+  </ItemGroup>
+
 </Project>
