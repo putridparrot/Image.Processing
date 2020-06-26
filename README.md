@@ -1,5 +1,7 @@
 # F# Image.Processing
 
+[![putridparrot](https://circleci.com/gh/putridparrot/Image.Processing.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
+
 The Image.Processing library was developed to solve a very specific problem. 
 
 I was working on a bunch of bitmaps of numbers and letters. Each bitmap ended up being a slightly different in size and the characters were not centred, plus I needed to turn the images into pure black and white. Not knowing how to do these things with an application such as GIMP and being a programmer, I figured why not write my own processing code.
