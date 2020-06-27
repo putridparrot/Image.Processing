@@ -1,6 +1,6 @@
 # F# Image.Processing
 
-[![putridparrot](https://circleci.com/gh/putridparrot/Image.Processing.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
+[![putridparrot](https://circleci.com/gh/putridparrot/Image.Processing.svg?style=shield)](https://circleci.com/gh/circleci/circleci-docs)
 
 The Image.Processing library was developed to solve a very specific problem. 
 
